@@ -72,16 +72,18 @@
         }
 
         .l {
-            position: relative;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 0 18px;
-            background: var(--card);
-            border-radius: 10px;
-            transition: .15s ease;
-        }
+		    position: relative;
+		    height: 64px;
+		    display: flex;
+		    align-items: center;
+		    gap: 16px;
+		    padding: 0 18px;
+		    background: var(--card);
+		    border-radius: 10px;
+		    transition: .15s ease;
+		    -webkit-tap-highlight-color: transparent;
+		    outline: none;
+		}
 
         .l:hover {
             background: var(--hover);
@@ -96,8 +98,7 @@
             flex: 0 0 30px;
         }
 
-        .i svg,
-        .i img {
+        .i svg, .i img {
             width: 30px;
             height: 30px;
             filter: brightness(0) invert(1);
@@ -109,13 +110,33 @@
             transform: translateX(-50%);
             font-weight: 500;
         }
+        
+        footer {
+		    margin-top: 20px;
+		    text-align: center;
+		}
+		
+		footer a {
+		    color: var(--muted);
+		    font-size: 13px;
+		    transition: .15s ease;
+		}
+		
+		footer a:hover {
+		    color: var(--fg);
+		}
     </style>
 </head>
 
 <body>
     <main id="a">
         <section id="p"></section>
-        <section id="l"></section>
+        <section id="l"></section>       
+        <footer>
+        <a href="" target="_blank" rel="noopenernoreferrer">
+	        Open Source
+	    </a>
+        </footer>
     </main>
 
     <script type="module">
