@@ -78,7 +78,6 @@
             gap: 16px;
             padding: 0 18px;
             background: var(--card);
-            /* border: 1px solid var(--border); */
             border-radius: 10px;
             transition: .15s ease;
         }
@@ -116,7 +115,7 @@
     </main>
 
     <script type="module">
-        import C from "./config.js";
+        import Config from "./config.js";
 
         const $ = (s,e=document) => e.querySelector(s);
 
@@ -130,25 +129,21 @@
         const l = $("#l");
 
         p.innerHTML = `
-            ${C.Profile?.ProfileUrl ? `<img src="${C.Profile.ProfileUrl}" alt="">` : ""}
-            <h1 id="n">${C.Profile?.Name ?? "Unknown"}</h1>
-            <p id="d">${C.Profile?.Description ?? ""}</p>
+            ${Config.Profile?.ProfileUrl ? `<img src="${Config.Profile.ProfileUrl}" alt="">` : ""}
+            <h1 id="n">${Config.Profile?.Name ?? "Unknown"}</h1>
+            <p id="d">${Config.Profile?.Description ?? ""}</p>
         `;
 
-        for (const [k,v] of Object.entries(C)) {
+        for (const [k,v] of Object.entries(Config)) {
             if (k === "Profile" || !v?.DestUrl) continue;
 
             const a = E("a","l");
-
             a.href = v.DestUrl;
             a.target = "_blank";
             a.rel = "noopener noreferrer";
 
-            const brandName = (v.Icon ?? k).toLowerCase();
-            const brandUrl = `./brand/${brandName}.svg`;
-
             a.innerHTML = `
-                <span class="i"><img src="${brandUrl}" alt="${v.Name ?? k} icon" loading="lazy"></span>
+                <span class="i"><img src="${./brand/${(v.Icon ?? k).toLowerCase()}.svg}" alt="${v.Name ?? k} icon" loading="lazy"></span>
                 <span class="t">${v.Name ?? k}</span>
             `;
 
