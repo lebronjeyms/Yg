@@ -112,14 +112,16 @@
         }
         
         footer {
-		    margin-top: 20px;
+		    position: fixed;
+		    bottom: 24px;
+		    left: 0;
+		    width: 100%;
 		    text-align: center;
 		}
 		
 		footer a {
 		    color: var(--muted);
 		    font-size: 13px;
-		    transition: .15s ease;
 		}
 		
 		footer a:hover {
@@ -131,13 +133,14 @@
 <body>
     <main id="a">
         <section id="p"></section>
-        <section id="l"></section>       
-        <footer>
-        <a href="" target="_blank" rel="noopenernoreferrer">
-	        Open Source
-	    </a>
-        </footer>
+        <section id="l"></section>
     </main>
+
+    <footer>
+        <a href="https://github.com/yourusername/yourrepo" target="_blank" rel="noopener noreferrer">
+            Open Source
+        </a>
+    </footer>
 
     <script type="module">
         import Config from "./config.js";
