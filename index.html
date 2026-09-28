@@ -199,30 +199,22 @@
 		    a.innerHTML = `<span class="i"><img src="./brand/${(v.Icon ?? k).toLowerCase()}.svg" alt="${v.Name ?? k} icon" loading="lazy"></span><span class="t">${v.Name ?? k}</span>`;
 		
 		    a.addEventListener("click", e => {
-		        e.preventDefault();
-		
-		        const t = $("#transition");
-		        const r = a.getBoundingClientRect();
-		
-		        t.style.left = `${r.left + r.width / 2}px`;
-		        t.style.top = `${r.top + r.height / 2}px`;
-		
-		        t.classList.add("go");
-		
-		        setTimeout(() => {
-		            window.open(a.href, "_blank");
-		        }, 650);
-		    });		
+			    e.preventDefault();			
+				const r = a.getBoundingClientRect();				
+			    const t = $("#transition");
+			    t.style.left = `${r.left + r.width / 2}px`;
+			    t.style.top = `${r.top + r.height / 2}px`;
+			    t.classList.add("go");
+			
+			    setTimeout(() => {
+			        window.open(a.href, "_blank");	
+			        t.classList.remove("go");
+			        t.style.left = "";
+			        t.style.top = "";
+			    }, 1000);
+			});
 		    l.append(a);
 		}
-		window.addEventListener("pageshow", () => {
-		    const t = $("#transition");
-		
-		    t.classList.remove("go");
-		    t.style.left = "";
-		    t.style.top = "";
-		});
-		
     </script>
 </body>
 </html>
