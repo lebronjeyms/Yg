@@ -130,7 +130,7 @@
 		
 		
 		
-		/* animations here */
+		/* creates an animation when clicking the link*/
 		#transition {
 		    position: fixed;
 		    z-index: 9999;
@@ -142,24 +142,8 @@
 		    transform: translate(-50%, -50%) scale(0);
 		}
 		
-		#transition span {
-		    position: fixed;
-		    left: 50%;
-		    top: 50%;
-		    color: var(--bg);
-		    font-size: 14px;
-		    font-weight: 500;
-		    opacity: 0;
-		    transform: translate(-50%, -50%);
-		    white-space: nowrap;
-		}
-		
 		#transition.go {
 		    animation: expand .7s cubic-bezier(.7,0,.2,1) forwards;
-		}
-		
-		#transition.go span {
-		    animation: show-text .2s ease .7s forwards;
 		}
 		
 		@keyframes expand {
@@ -167,19 +151,11 @@
 		        transform: translate(-50%, -50%) scale(100);
 		    }
 		}
-		
-		@keyframes show-text {
-		    to {
-		        opacity: 1;
-		    }
-		}
     </style>
 </head>
 
 <body>
-	<div id="transition">
-	    <span>Redirecting...</span>
-	</div>
+	<div id="transition"></div>
 	
     <main id="a">
         <section id="p"></section>
