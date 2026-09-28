@@ -96,9 +96,11 @@
             flex: 0 0 30px;
         }
 
-        .i svg {
+        .i svg,
+        .i img {
             width: 30px;
             height: 30px;
+            filter: brightness(0) invert(1);
         }
 
         .t {
@@ -124,21 +126,6 @@
             return e;
         };
 
-        const I = {
-            Discord: `<svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19.5 5.3A16.7 16.7 0 0 0 15.4 4l-.5 1a15 15 0 0 0-3-.3c-1 0-2 .1-3 .3l-.5-1a16.7 16.7 0 0 0-4.1 1.3C1.7 9.2 1 13 1.2 16.7a16.7 16.7 0 0 0 5.1 2.6l1.2-1.7a10.8 10.8 0 0 1-1.9-.9l.5-.4c3.7 1.7 7.8 1.7 11.5 0l.5.4c-.6.4-1.2.7-1.9.9l1.2 1.7a16.7 16.7 0 0 0 5.1-2.6c.3-4.3-.7-8-3-11.4ZM8.7 14.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Zm6.6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Z"/>
-            </svg>`,
-
-            Reddit: `<svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 4a8 8 0 1 0 7.4 11.1l1.4 1.4 1.1-1.1-1.5-1.5A8 8 0 0 0 12 4Zm-3 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm-5.3 4.2c1.3 1 3.3 1 4.6 0l.8 1c-1.8 1.5-4.4 1.5-6.2 0l.8-1Z"/>
-            </svg>`,
-
-            Default: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M12 8v8M8 12h8"/>
-            </svg>`
-        };
-
         const p = $("#p");
         const l = $("#l");
 
@@ -157,8 +144,11 @@
             a.target = "_blank";
             a.rel = "noopener noreferrer";
 
+            const brandName = (v.Icon ?? k).toLowerCase();
+            const brandUrl = `./brand/${brandName}.svg`;
+
             a.innerHTML = `
-                <span class="i">${I[v.Icon] ?? I.Default}</span>
+                <span class="i"><img src="${brandUrl}" alt="${v.Name ?? k} icon" loading="lazy"></span>
                 <span class="t">${v.Name ?? k}</span>
             `;
 

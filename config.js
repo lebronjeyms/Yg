@@ -7,13 +7,13 @@ export default {
 
     Discord: {
         Name: "Discord",
-        Icon: "Discord",
+        Icon: "brand/discord.svg",
         DestUrl: "https://discord.com"
     },
 
     Reddit: {
         Name: "Reddit",
-        Icon: "Reddit",
+        Icon: "brand/reddit.svg",
         DestUrl: "https://reddit.com"
     }
 };
