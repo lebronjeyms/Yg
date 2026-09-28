@@ -142,10 +142,7 @@
             a.target = "_blank";
             a.rel = "noopener noreferrer";
 
-            a.innerHTML = `
-                <span class="i"><img src="${./brand/${(v.Icon ?? k).toLowerCase()}.svg}" alt="${v.Name ?? k} icon" loading="lazy"></span>
-                <span class="t">${v.Name ?? k}</span>
-            `;
+            a.innerHTML = `<span class="i"><img src="./brand/${(v.Icon ?? k).toLowerCase()}.svg" alt="${v.Name ?? k} icon" loading="lazy"></span><span class="t">${v.Name ?? k}</span>`;
 
             l.append(a);
         }
