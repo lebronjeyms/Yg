@@ -142,8 +142,24 @@
 		    transform: translate(-50%, -50%) scale(0);
 		}
 		
+		#transition span {
+		    position: fixed;
+		    left: 50%;
+		    top: 50%;
+		    color: var(--bg);
+		    font-size: 14px;
+		    font-weight: 500;
+		    opacity: 0;
+		    transform: translate(-50%, -50%);
+		    white-space: nowrap;
+		}
+		
 		#transition.go {
 		    animation: expand .7s cubic-bezier(.7,0,.2,1) forwards;
+		}
+		
+		#transition.go span {
+		    animation: show-text .2s ease .7s forwards;
 		}
 		
 		@keyframes expand {
@@ -151,11 +167,19 @@
 		        transform: translate(-50%, -50%) scale(100);
 		    }
 		}
+		
+		@keyframes show-text {
+		    to {
+		        opacity: 1;
+		    }
+		}
     </style>
 </head>
 
 <body>
-	<div id="transition"></div>
+	<div id="transition">
+	    <span>Redirecting...</span>
+	</div>
 	
     <main id="a">
         <section id="p"></section>
@@ -169,18 +193,17 @@
     </footer>
 
     <script type="module">
-        import Config from "./config.js";
-
+        import Config from "./config.js";   
         const $ = (s,e=document) => e.querySelector(s);
+
+        const p = $("#p");
+        const l = $("#l");
 
         const E = (t,c) => {
             const e = document.createElement(t);
             if (c) e.className = c;
             return e;
         };
-
-        const p = $("#p");
-        const l = $("#l");
 
         p.innerHTML = `
             ${Config.Profile?.ProfileUrl ? `<img src="${Config.Profile.ProfileUrl}" alt="">` : ""}
@@ -213,10 +236,17 @@
 		        setTimeout(() => {
 		            window.open(a.href, "_blank");
 		        }, 650);
-		    });
-		
+		    });		
 		    l.append(a);
 		}
+		window.addEventListener("pageshow", () => {
+		    const t = $("#transition");
+		
+		    t.classList.remove("go");
+		    t.style.left = "";
+		    t.style.top = "";
+		});
+		
     </script>
 </body>
 </html>
