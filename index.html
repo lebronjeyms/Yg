@@ -127,17 +127,43 @@
 		footer a:hover {
 		    color: var(--fg);
 		}
+		
+		
+		
+		/* animations here */
+		#transition {
+		    position: fixed;
+		    z-index: 9999;
+		    width: 40px;
+		    height: 40px;
+		    border-radius: 50%;
+		    background: var(--fg);
+		    pointer-events: none;
+		    transform: translate(-50%, -50%) scale(0);
+		}
+		
+		#transition.go {
+		    animation: expand .7s cubic-bezier(.7,0,.2,1) forwards;
+		}
+		
+		@keyframes expand {
+		    to {
+		        transform: translate(-50%, -50%) scale(100);
+		    }
+		}
     </style>
 </head>
 
 <body>
+	<div id="transition"></div>
+	
     <main id="a">
         <section id="p"></section>
         <section id="l"></section>
     </main>
 
     <footer>
-        <a href="https://github.com/zvqn/LinkTree" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/yourusername/yourrepo" target="_blank" rel="noopener noreferrer">
             Open Source
         </a>
     </footer>
@@ -163,17 +189,34 @@
         `;
 
         for (const [k,v] of Object.entries(Config)) {
-            if (k === "Profile" || !v?.DestUrl) continue;
-
-            const a = E("a","l");
-            a.href = v.DestUrl;
-            a.target = "_blank";
-            a.rel = "noopener noreferrer";
-
-            a.innerHTML = `<span class="i"><img src="./brand/${(v.Icon ?? k).toLowerCase()}.svg" alt="${v.Name ?? k} icon" loading="lazy"></span><span class="t">${v.Name ?? k}</span>`;
-
-            l.append(a);
-        }
+		    if (k === "Profile" || !v?.DestUrl) continue;
+		
+		    const a = E("a","l");
+		
+		    a.href = v.DestUrl;
+		    a.target = "_blank";
+		    a.rel = "noopener noreferrer";
+		
+		    a.innerHTML = `<span class="i"><img src="./brand/${(v.Icon ?? k).toLowerCase()}.svg" alt="${v.Name ?? k} icon" loading="lazy"></span><span class="t">${v.Name ?? k}</span>`;
+		
+		    a.addEventListener("click", e => {
+		        e.preventDefault();
+		
+		        const t = $("#transition");
+		        const r = a.getBoundingClientRect();
+		
+		        t.style.left = `${r.left + r.width / 2}px`;
+		        t.style.top = `${r.top + r.height / 2}px`;
+		
+		        t.classList.add("go");
+		
+		        setTimeout(() => {
+		            window.open(a.href, "_blank");
+		        }, 650);
+		    });
+		
+		    l.append(a);
+		}
     </script>
 </body>
 </html>
